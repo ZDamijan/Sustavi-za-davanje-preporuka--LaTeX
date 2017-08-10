@@ -49,6 +49,7 @@
 \renewcommand{\thethm}{\arabic{chapter}.\arabic{section}.\arabic{thm}}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}.}
 \usepackage[labelsep=space]{caption}
+\captionsetup[figure]{labelfont=bf}
 \renewcommand{\chaptermark}[1]{\markright{\uppercase{\thechapter~~#1}}}
 \renewcommand{\lstlistingname}{Programski kod}
 
@@ -363,7 +364,7 @@ function [ P ] = kNN_user_based_prediction( R, k, similarity_measure )
 end
 \end{lstlisting}
 
-\lstinputlisting[caption=Test from file]{kodovi/kNN_user_based_recom.m}
+\lstinputlisting[breaklines=true, caption=Test from file]{kodovi/kNN_user_based_recom.m}
 
 % Na kraju diplomkog rada stavlja se  bibliografija
 % Najprije definiramo nacin prikazivanja bibliografije, u ovom slucaju verzija amsplain stila
@@ -371,8 +372,11 @@ end
 
 % U datoteku diplomski.bib se stavljaju bibliografske reference
 % Bibliografske reference u bib formatu se mogu dobiti iz MathSciNet baze, Google Scholara, ArXiva, ...
+\begingroup
+\raggedright
 \bibliography{bibliografija/diplomski}
 \nocite{*}
+\endgroup
 
 \pagestyle{empty} % ne zelimo brojanje sljedecih stranica
 
@@ -389,7 +393,7 @@ In this ...
 % te zivotopis
 
 \begin{cv}
-Rođen sam 18. kolovoza 1991. godine u Puli. U Rovinju sam završio Osnovnu školu Jurja Dobrila. Već u osnovnoj školi pokazujem interes za matematiku i informatiku posebice za programiranjem te sam sudjelovao na brojnim županijskim i državnim natjecanjima. Bio sam član Udruge tehničke kulture "Galileo Galilei" u Rovinju, a kasnije za udrugu vodim radionicu "Izrada web stranica" za osnovnoškolce. Uspješnim polaganjem državne mature 2010. godine završio sam prirodoslovno-matematičku gimnaziju u Srednjoj školi Zvane Črnje u Rovinju. Iste godine upisujem sveučilišni preddiplomski studij Matematike na Prirodoslovno-matematičkom fakultetu u Zagrebu, zattim 2015. godine  upisujem sveučilišni diplomski studij Računarstva i matematike. Tijekom studija radio sam kao nastavnik matematike i računarstva u Srednjoj školi Zvane Črnje u Rovinju i u Srednjoj strukovnoj školi u Samoboru te sam bio demonstrator iz kolegija Građa računala. Za fakulet redovito sam sudjelovao u sportskim natjecanjima iz dvoranske odbojke i odbojke na pijesku. 
+Rođen sam 18. kolovoza 1991. godine u Puli. U Rovinju sam završio Osnovnu školu Jurja Dobrila. Već u osnovnoj školi pokazujem interes za matematiku i informatiku posebice za programiranjem te sam sudjelovao na brojnim županijskim i državnim natjecanjima. Bio sam član Udruge tehničke kulture "Galileo Galilei" u Rovinju, a kasnije za udrugu vodim radionicu "Izrada web stranica" za osnovnoškolce. Uspješnim polaganjem državne mature 2010. godine završio sam prirodoslovno-matematičku gimnaziju u Srednjoj školi Zvane Črnje u Rovinju. Iste godine upisujem sveučilišni preddiplomski studij Matematike na Prirodoslovno-matematičkom fakultetu u Zagrebu, zatim 2015. godine  upisujem sveučilišni diplomski studij Računarstva i matematike. Tijekom studija radio sam kao nastavnik matematike i računarstva u Srednjoj školi Zvane Črnje u Rovinju i u Srednjoj strukovnoj školi u Samoboru te sam bio demonstrator iz kolegija Građa računala. Za fakultet redovito sam sudjelovao u sportskim natjecanjima iz dvoranske odbojke i odbojke na pijesku. 
 \end{cv}
 
 \end{document}

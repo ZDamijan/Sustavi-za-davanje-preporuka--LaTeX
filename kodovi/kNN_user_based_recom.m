@@ -13,9 +13,7 @@ function [ recomList ] = kNN_user_based_recom ( u, R, k, sim )
     for i = 1:n
         if R(u,i) == 0
             P(i) = mean_userRates(u) + ...
-            dot( (R(N(u,:),i)~=0)' .* S(u,N(u,:)), R(N(u,:),i) - ...
-            mean_userRates(N(u,:)) ) / ...
-            norm( (R(N(u,:),i)~=0)' .* S(u,N(u,:)), 1 );
+            dot( (R(N(u,:),i)~=0)' .* S(u,N(u,:)), R(N(u,:),i) - mean_userRates(N(u,:)) ) / norm( (R(N(u,:),i)~=0)' .* S(u,N(u,:)), 1 );
         end
     end
     [~, recomList] = sort(P,'descend');
