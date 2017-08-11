@@ -36,9 +36,8 @@
 % Definirane su naredbe za ispisivanje skupova N, Z, Q, R i C
 % Definirane su naredbe za funkcije koje se u hrvatskoj notaciji oznacavaju drukcije 
 % nego u americkoj: tg, ctg, ... (\tgh za tangens hiperbolni)
-% Takodjer su definirane naredbe za Ker i Im (da bi se razlikovala od naredbe za imaginarni dio kompleksnog
-% broja, naredba se zove \slika).
-\usepackage{algorithm2e}% http://ctan.org/pkg/algorithm2e
+% Takodjer su definirane naredbe za Ker i Im (da bi se razlikovala od naredbe za imaginarni dio kompleksnog broja, naredba se zove \slika).
+\usepackage{algorithm2e} % http://ctan.org/pkg/algorithm2e
 \usepackage[numbered, framed]{mcode}
 \usepackage{indentfirst}
 \usepackage{enumitem}
@@ -53,35 +52,28 @@
 \renewcommand{\chaptermark}[1]{\markright{\uppercase{\thechapter~~#1}}}
 \renewcommand{\lstlistingname}{Programski kod}
 
-% Podaci koje treba unijeti
+% Podaci o diplomskom radu
 \title{Sustavi za davanje preporuka}
 \author{Zlatko Damijanić}
-\advisor{izv. prof. dr. sc. Luka Grubišić}  % obavezno s titulom (prof. dr. sc ili doc. dr. sc.)
+\advisor{izv. prof. dr. sc. Luka Grubišić}  % obavezno s titulom
 \date{rujan, 2017.}  % oblika mjesec, godina
-
-% Moguce je unijeti i posvetu
-% Ukoliko nema posvete, dovoljno je iskomentirati/izbrisati sljedeci redak 
-\dedication{Obitelj, prijatelji, škola, izreka}
+\dedication{Obitelj, prijatelji, škola, izreka} % posveta
 
 \begin{document}
-
 \renewcommand\thelstlisting{\arabic{chapter}.\arabic{lstlisting}.}
 
-% Naredna frontmatter generira naslovnu stranicu, stranicu za potpise povjerenstva, eventualnu posvetu i sadrzaj
-% Moze se iskomentirati ukoliko nije u pitanju konacna verzija
-\frontmatter
-
-% Tekst diplomskog ...
-
-% Diplomski rad treba poceti s uvodnim poglavljem  
+\frontmatter % generira stranicu za potpise povjerenstva, posvetu i sadržaj
+% uvod
 \begin{intro}
 Web, kažu, izlazi iz doba pretrage i ulazi u doba preporuka. Koja je razlika? Pretraga je kada tražimo nešto, a preporuka je kada nešto dobro za što nisi znao da postoji ili nisi znao kako pronaći, pronađe tebe. Informacijsko doba uslijedilo je nakon industrijskog doba i obilježeno je naglim razvitkom i raspostranjenosti informacijske tehnologije pomoću kojih informacije postaju sve dostupnije. Internet i digitalna tehnologija pružaju nove prilike za učenje, omogućuju pojedincima direktnu prodaju ideja, usluga ili proizvoda, pristup informacijama te zadovoljavanje emocionalnih i psiholoških potreba. Povećanjem količine informacije koja nas okružuje javlja se potreba za što boljim upravljanjem informacijama. Bitan aspekt tog upravljanja je filtriranje informacija koja se postiže pretragom ili preporukom. Kod pretrage korisnik upisuje ključne riječi te se na temelju unesenih riječi filtriraju informacije i prikazuju korisniku. Najpoznatiji primjer filtriranja je web tražilica Google koja pretražuje web stranice. Dok preporuke otkrivaju sadržaj na Internetu koji bi mogao biti zanimljiv korisniku na temelju nekih njegovih prethodno pregledanih sadržaja te zatim na temelju tih predviđanja dati mu listu od nekoliko preporuka. Filtriranje se može izvesti i njihovom kombinacijom. Među najpoznatijim primjerima sustava za  preporuku na webu su oni od tvrtke Amazon i Netflix.
+% odlomak
 \par 
 U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove zadaće. Dana je njihova podjela i opisani su algoritmi najkorištenijih predstavnika pojedine kategorije. Navedeni su njihovi nedostaci i prednosti te kako ih se može evaluirati.
 \end{intro}
-
+% poglavlje
 \chapter{Opis i podjela sustava za davanje preporuka na webu}	
 Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti ili što bi moglo zanimati korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka.
+% lista
 \bigskip
 \\ Primjeri web mjesta koje daju preporuke svojim korisnicima i domene preporuka:
 \begin{itemize}[topsep=2pt]
@@ -98,8 +90,10 @@ Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga
 \item google.com/adsense, propellerads.com, media.net, infolinks.com - oglasi
 \end{itemize}
 \bigskip
+% odlomak
 \par
 Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednosti je što su jednostavni za implementaciju i lako je prikupiti podatke.
+% slika
 \bigskip
 \\ Primjeri lista preporuka nepersonaliziranih sustava:
 \begin{itemize}[topsep=2pt]
@@ -112,7 +106,8 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
 \item sljedeće stavke su često zajedno pregledane
 \item korisnici koji su pogledali neku stavku pogledali su i sljedeće stavke
 \end{itemize}
-%
+\bigskip
+% slika
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
@@ -120,7 +115,9 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
 \end{center}
 \end{figure}
 %
+% odlomak
 \par Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlostima, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, njihovj trenutnoj poziciji, podatke o samom sadržaju i slično. Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks).
+% lista
 \bigskip
 \\ Podjela perosnaliziranih sustava:
 \begin{itemize}[topsep=2pt]
@@ -153,10 +150,11 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
     \item temeljeni na kontekstu (eng. context-based)
 	\end{itemize}
 \end{itemize}
-%
+\bigskip
+% poglavlje
 \chapter{Sustavi temeljeni na suradnji}
-%
-Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. U takvim algoritmima kreiraju se modeli korisnika i pojedinih elemenata sadržaja. Dijelimo ih na one temeljene na sličnosti korisnika, sličnosti korisnika i one temeljene na modelu.
+% odlomak
+\par Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. U takvim algoritmima kreiraju se modeli korisnika i pojedinih elemenata sadržaja. Dijelimo ih na one temeljene na sličnosti korisnika, sličnosti korisnika i one temeljene na modelu.
 %
 \section{Sustavi temeljeni na sličnosti korisnika}
 %
@@ -202,8 +200,7 @@ pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\o
 \end{defn}
 %
 \section{Sustavi temeljeni na sličnosti objekata}
-%
-U ovim sustavima se na temelju ocjena korisnika kreira model u kojem je se određuje sličmost između objekata. Za izračun k-najbliži susjeda u potrebno je $O(|U|)$ koraka, moguće i više, ovisno o načinu računanja funkcije sličnosti. U sustavima sa velikim brojem korisnika potreban je brži način predikcije ocjena. Skalabilnost dobivamo ako prethodno izračunamo susjede svakom objektu, smatra se da su sličnosti između ovjekata stabilniji od sličnosti korisnika, pa kod izračuna predikcija koristimo te unaprijed određene susjede. Objekti su sličniji ako imaju podjednake ocjene korisnika. Slično kao prethodnim sustavima, bira se k-najbližih susjeda nekog objekta i na temelju ocjena korisnika tim susjedima i funkcije sličnosti predviđa se ocjena.
+\par U ovim sustavima se na temelju ocjena korisnika kreira model u kojem je se određuje sličmost između objekata. Za izračun k-najbliži susjeda u potrebno je $O(|U|)$ koraka, moguće i više, ovisno o načinu računanja funkcije sličnosti. U sustavima sa velikim brojem korisnika potreban je brži način predikcije ocjena. Skalabilnost dobivamo ako prethodno izračunamo susjede svakom objektu, smatra se da su sličnosti između ovjekata stabilniji od sličnosti korisnika, pa kod izračuna predikcija koristimo te unaprijed određene susjede. Objekti su sličniji ako imaju podjednake ocjene korisnika. Slično kao prethodnim sustavima, bira se k-najbližih susjeda nekog objekta i na temelju ocjena korisnika tim susjedima i funkcije sličnosti predviđa se ocjena.
 \begin{defn}
 Neka je $U$ skup korisnika, $I$ skup objekata, $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. $S \subseteq I$ je skup k-najbližih susjeda objekta $i$. Predviđanje koju ocjenu bi dao korisnik $u$ objektu $i$ dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti objekata $s:I\times I\rightarrow \R$. 
 \[ p:U\times I \rightarrow \R^+, p(u,i) = \frac{\sum_{j\in S}s(i,j)r(u,j)}{\sum_{j\in S}|s(i,j)|} \]
