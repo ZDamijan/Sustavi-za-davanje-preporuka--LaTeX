@@ -75,15 +75,15 @@
 
 % Diplomski rad treba poceti s uvodnim poglavljem  
 \begin{intro}
-Web, kažu, izlazi iz doba pretrage i ulazi u doba preporuka. Koja je razlika? Pretraga je kada tražimo nešto, a preporuka je kada nešto dobro za što nisi znao da postoji ili nisi zano kako pronaći, pronađe tebe. Informacijsko doba uslijedilo je nakon industrijskog doba i obilježeno je naglim razvitkom i raspostranjenosti informacijske tehnologije pomoću kojih informacije postaju sve dostupnije. Internet i digitalna tehnologija pružaju nove prilike za učenje, omogućuju pojedincima direktnu prodaju ideja, usluga ili proizvoda, pristup informacijama te zadovoljavanje emocionalnih i psiholoških potreba. Povećanjem količine informacije koja nas okružuje javlja se potreba za što boljim upravljanjem informacijama. Bitan aspekt tog upravljanja je filtriranje informacija koja se postiže pretragom ili preporukom. Kod pretrage korisnik upisuje ključne riječi te se na temelju unesenih riječi filtriraju informacije i prikazuju koriniku. Najpoznatiji primjer filtriranja je web tražilica Google koja pretražuje web stranice. Dok preporuke otkrivaju sadržaj na Internetu koji bi mogao biti zanimljiv korisniku na temelju nekih njegovih prethodno pregledanih sadržaja te zatim na temelju tih predviđanja dati mu listu od nekoliko preporuka. Filtriranje se može izvesti i njihovom kombinacijom. Među najpoznatijim primjerima sustava za  preporuku na webu su oni od tvrtke Amazon i Netflix.
+Web, kažu, izlazi iz doba pretrage i ulazi u doba preporuka. Koja je razlika? Pretraga je kada tražimo nešto, a preporuka je kada nešto dobro za što nisi znao da postoji ili nisi znao kako pronaći, pronađe tebe. Informacijsko doba uslijedilo je nakon industrijskog doba i obilježeno je naglim razvitkom i raspostranjenosti informacijske tehnologije pomoću kojih informacije postaju sve dostupnije. Internet i digitalna tehnologija pružaju nove prilike za učenje, omogućuju pojedincima direktnu prodaju ideja, usluga ili proizvoda, pristup informacijama te zadovoljavanje emocionalnih i psiholoških potreba. Povećanjem količine informacije koja nas okružuje javlja se potreba za što boljim upravljanjem informacijama. Bitan aspekt tog upravljanja je filtriranje informacija koja se postiže pretragom ili preporukom. Kod pretrage korisnik upisuje ključne riječi te se na temelju unesenih riječi filtriraju informacije i prikazuju korisniku. Najpoznatiji primjer filtriranja je web tražilica Google koja pretražuje web stranice. Dok preporuke otkrivaju sadržaj na Internetu koji bi mogao biti zanimljiv korisniku na temelju nekih njegovih prethodno pregledanih sadržaja te zatim na temelju tih predviđanja dati mu listu od nekoliko preporuka. Filtriranje se može izvesti i njihovom kombinacijom. Među najpoznatijim primjerima sustava za  preporuku na webu su oni od tvrtke Amazon i Netflix.
 \par 
-U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove zadaće. Dana je njohova podjela i opisani su algoritmi najkorištenijih predstavnika pojedine kategorije. Navedeni su njihovi nedostaci i prednosti te kako ih se može vrednovati.
+U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove zadaće. Dana je njihova podjela i opisani su algoritmi najkorištenijih predstavnika pojedine kategorije. Navedeni su njihovi nedostaci i prednosti te kako ih se može evaluirati.
 \end{intro}
 
-\chapter{Opis i podjela sustava za davanje preporuka ne webu}	
-Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga skup metoda s koiima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti ili što bi moglo zanimati korisnika.
+\chapter{Opis i podjela sustava za davanje preporuka na webu}	
+Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti ili što bi moglo zanimati korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka.
 \bigskip
-\\ Primjeri web stranica koje daju preporuke svojim korisnicima:
+\\ Primjeri web mjesta koje daju preporuke svojim korisnicima i domene preporuka:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
 \item movielens.org, netflix.com, imdb.com, themoviedb.org - filmovi
@@ -99,9 +99,8 @@ Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga
 \end{itemize}
 \bigskip
 \par
-Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednosti su to što su jednostavni za implementaciju i lako je prikupiti podatke, a očiti nedostatak je što su takve preporuke jednake za sve korisnike i ne uzimaju u obzir različite preferencije korisnika.
+Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednosti je što su jednostavni za implementaciju i lako je prikupiti podatke.
 \bigskip
-\\
 \\ Primjeri lista preporuka nepersonaliziranih sustava:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
@@ -114,24 +113,15 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
 \item korisnici koji su pogledali neku stavku pogledali su i sljedeće stavke
 \end{itemize}
 %
-\begin{figure}
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
 \caption{Primjeri nepersonaliziranih preporuka na web stranici amazon.com}
 \end{center}
 \end{figure}
 %
+\par Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlostima, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, njihovj trenutnoj poziciji, podatke o samom sadržaju i slično. Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks).
 \bigskip
-\par Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlostima, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, njihovj trenutnoj poziciji, podatke o samom sadržaju i slično. Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep) i problem manipulacije sustava (shilling attacks).
-\bigskip
-%
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{slike/recommendation_systems.png}
-\caption{Općenita struktura personaliziranog sutava}
-\end{center}
-\end{figure}
-%
 \\ Podjela perosnaliziranih sustava:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
@@ -142,16 +132,9 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
     \begin{itemize}[topsep=2pt]
     \setlength{\parskip}{0pt}
     \item temeljeni na memoriji (eng. memory-based): temeljeni na sličnosti korisnika (eng. user-based ili user-user collaborative filtering), temeljeni na slčnosti objekata (eng. item-based ili item-item collaborative filtering)
-    \item temeljeni na modelu (eng. model-based), razvijaju se modeli pomoću algoritama rudarenja podacima (eng. data mining) i strojnog učenja (eng. machine learning) nad podacima dobivenim suradnjom korisnika
+    \item temeljeni na modelu (eng. model-based), razvijaju se modeli pomoću algoritama rudarenja podacima (eng. data mining) i strojnog učenja (eng. machine learning)
     \end{itemize}
   \item temeljeni na sadržaju (content-based)
-  	\begin{itemize}[topsep=2pt]
-	\setlength{\parskip}{0pt}
-    \item grupiranje podataka (eng. cluster analysis)
-	\item Bayesovi klasifikatori (eng. Bayesian classifiers)
-	\item stabla oluke (eng. decision trees)
-    \item neuronske mreže (eng. neural networks)
-	\end{itemize}
   \item temeljeni na znanju (eng. knowledge-based)
     \begin{itemize}[topsep=2pt]
 	\setlength{\parskip}{0pt}
@@ -164,10 +147,10 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
     \begin{itemize}[topsep=2pt]
 	\setlength{\parskip}{0pt}
     \item temeljeni na osobnosti (eng. personality-based)
-	\item temeljeni na kontekstu (eng. contextual-based)
     \item temeljeni na demografiji (eng. demographic-based)
     \item temeljeni na zajednicama (eng. social-based ili community-based)
-    \item temeljeni na oznakama (eng. Tag/Keyword-based)
+    \item temeljeni na oznakama (eng. tag-based ili keyword-based)
+    \item temeljeni na kontekstu (eng. context-based)
 	\end{itemize}
 \end{itemize}
 %
@@ -317,9 +300,9 @@ Neka je $C=\frac{1}{|U|-1}\tilde{R}^T\tilde{R}$ matrica kovarijanci. Matrica C j
 %
 \chapter{Pregled novih metoda}	
 %
-\chapter{Studijski primjer - (Social Web), Implementacija sustava temeljenih na oznakama (Tag-Based Recommendation in Social Web Systems)}	
+\chapter{Sustav temeljen na oznakama}	
 %
-\chapter{Vrednovanje sustava}	
+\chapter{Evaluacija sustava}	
 %
 \chapter{Trenutni izazovi i budućnost}	
 %
