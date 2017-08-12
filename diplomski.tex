@@ -70,10 +70,10 @@ U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove za
 \end{intro}
 % poglavlje
 \chapter{Opis i podjela sustava za davanje preporuka na webu}	
-Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti ili što bi moglo zanimati korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka.
+Sustav za davanje preporuka (eng. recommendation systems) spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti, što bi moglo zanimati ili što je relevantno za korisnika. Najčešći oblik preporuka je lista sadržaja za koje je sustav predvidio da su najrelevantniji za korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka. Područje primjene sustava je veliko što se može vidjeti i iz sljedećih primjera.
 % lista
 \bigskip
-\\ Primjeri web mjesta koje daju preporuke svojim korisnicima i domene preporuka:
+\\ Primjeri web mjesta koje daju preporuke svojim korisnicima i područje njihove primjene:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
 \item movielens.org, netflix.com, imdb.com, themoviedb.org - filmovi
@@ -83,26 +83,26 @@ Sustav za davanje preporuka spada u područje filtriranje informacija i čini ga
 \item youtube.com, dailymotion.com, vimeo.com, metacafe.com - video
 \item del.icio.us, diigo.com, raindrop.io, getpocket.com - web oznake 
 \item facebook.com, myspace.com, linkedin.com, gotinder.com - prijatelji
-\item airbnb.com, booking.com, flipkey.com, tripping.com - smještaj
+\item airbnb.com, booking.com, trivago.com, tripping.com - smještaj
 \item bibsonomy.org, citeulike.org, mendeley.com, zotero.org - publikacije
 \item google.com/adsense, propellerads.com, media.net, infolinks.com - oglasi
 \end{itemize}
 \bigskip
 % odlomak
 \par
-Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednosti je što su jednostavni za implementaciju i lako je prikupiti podatke.
-% slika
+Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene pod izrazom stavke mislim na sadržaj koji se preporučuje kao što su knjige, filmovi, video, proizvodi i sl.   
+% slika 
 \bigskip
 \\ Primjeri lista preporuka nepersonaliziranih sustava:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
-\item trenutno pregledavane stavke
+\item trenutno pregledavane stavke (na vrhu \ref{fig:amazon})
 \item najnovije stavke
 \item najprodavanije stavke
 \item najpopularnije stavke
 \item najbolje ocijenjene stavke
 \item sljedeće stavke su često zajedno pregledane
-\item korisnici koji su pogledali neku stavku pogledali su i sljedeće stavke
+\item korisnici koji su pogledali / kupili neku stavku pogledali /kupili su i sljedeće stavke
 \end{itemize}
 \bigskip
 % slika
@@ -110,11 +110,13 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
 \begin{center}
 \includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
 \caption{Primjeri nepersonaliziranih preporuka na web stranici amazon.com}
+\label{fig:amzon preporuke}
 \end{center}
 \end{figure}
-%
 % odlomak
-\par Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlostima, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, njihovj trenutnoj poziciji, podatke o samom sadržaju i slično. Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks).
+\par 
+Figure \ref{fig:gull} shows a photograph of a gull.
+Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlosti, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, podatke o samom sadržaju i na temelju njih daju personalizirane preporuke za pojedinog korisnika. Kvaliteta sustava mjeri se kroz njegovu sposobnost preporuke sadržaja iz tzv. Long Tail-a. Nepersonalizirani sustavi imaju tendenciju da preporučuju najpopularnije sadržaje i time ti sadržaji postaju 
 % slika
 \begin{figure}[!h]
 \begin{center}
@@ -122,6 +124,9 @@ Možemo ih podijeliti na nepersonalizirane i personalizirane. Nepersonalizirani 
 \caption{Preporučivanje sadržaja iz Long Tail-a (J. Jovanović, 2014.)}
 \end{center}
 \end{figure}
+% odlomak
+\par 
+Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks).
 % lista
 \bigskip
 \\ Podjela perosnaliziranih sustava:
