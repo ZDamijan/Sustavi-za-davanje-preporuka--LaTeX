@@ -12,6 +12,7 @@
 % bibliografija na hrvatskom
 \usepackage[languagenames,fixlanguage,croatian]{babelbib} % zahtijeva datoteku croatian.bdf
 \usepackage{indentfirst}
+
 % hiperlinkovi 
 \usepackage[pdftex]{hyperref} % ukoliko se koristi XeLaTeX onda je \usepackage[xetex]{hyperref}
 % Odabir familije fontova:
@@ -54,7 +55,7 @@
 \advisor{izv. prof. dr. sc. Luka Grubišić}  % obavezno s titulom
 \date{rujan, 2017.}  % oblika mjesec, godina
 \dedication{Obitelj, prijatelji, škola, izreka} % posveta
-\bibliographystyle{IEEEtranS.bst}
+\bibliographystyle{IEEEtran.bst}
 
 \begin{document}
 \renewcommand\thelstlisting{\arabic{chapter}.\arabic{lstlisting}.}
@@ -353,7 +354,8 @@ end
 % Bibliografske reference u bib formatu se mogu dobiti iz MathSciNet baze, Google Scholara, ArXiva, ...
 \begingroup
 \raggedright
-\bibliography{bibliografija/diplomski}
+\bibliography{bibliografija/test}
+
 \nocite{*}
 \endgroup
 
