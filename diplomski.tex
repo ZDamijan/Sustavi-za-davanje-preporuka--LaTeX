@@ -90,29 +90,29 @@ Sustav za davanje preporuka (eng. recommendation systems) spada u područje filt
 \bigskip
 % odlomak
 \par
-Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene izraz sadržaj odnosi se na knjige, filmovi, video, proizvodi i sl.   
-% slika 
-\bigskip
-\\ Primjeri lista preporuka nepersonaliziranih sustava:
-\begin{itemize}[topsep=2pt]
-\setlength{\parskip}{0pt}
-\item trenutno pregledavane stavke (na vrhu slike \ref{fig: amazon nepresonalizirane preporuke} )
-\item korisnici koji su kupili neku stavku kupili su i sljedeće stavke (na sredini slike \ref{fig: amazon nepresonalizirane preporuke} )
-\item najnovije stavke
-\item najprodavanije stavke
-\item najpopularnije stavke
-\item najbolje ocijenjene stavke
-\item sljedeće stavke su često zajedno pregledane
-\end{itemize}
-\bigskip
+Problem preporuka definiran je 90-tih godina, ali se danas još razvija i poširuje se područje njegove primjene. 2006. godine problem je populariziran natjecanjem "Netflix Prize". Netflix je web mjesto za gledanje filmova, serija, emisija, TV kanala i sl. Natjecanje je bilo otvorenog tipa i cilj je bio pronaći algoritam koji će poboljšati predikcije Netflix-ovog algoritma. Trebalo je predvidjeti koju će ocjenu korisnik dodijeliti nekom filmu samo na temelju prijašnjih ocjena korisnika, bez dodatnih informacija o korisnicima i filmovima. Nagradu od 1.000.000 američkih dolara odnio je tim "BellKor's Pragmatic Chaos" koji je poboljšao predikcije za 10.06\%.
+% odlomak
+\par
+Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene izraz sadržaj odnosi se na knjige, filmovi, video, proizvodi i ostalo što sustav preporučuje.   
 % slika
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
+\includegraphics[scale=0.8]{slike/amazon-non_personalized_recom.png}
 \caption{Primjeri nepersonaliziranih preporuka na web stranici amazon.com}
 \label{fig: amazon nepresonalizirane preporuke}
 \end{center}
 \end{figure}
+\\ Primjeri lista preporuka nepersonaliziranih sustava:
+\begin{itemize}[topsep=2pt]
+\setlength{\parskip}{0pt}
+\item trenutno pregledavane stavke (na vrhu slike \ref{fig: amazon nepresonalizirane preporuke})
+\item korisnici koji su kupili neke sadržaje kupili su i sljedeće sadržaje (na sredini slike \ref{fig: amazon nepresonalizirane preporuke})
+\item najnoviji sadržaji
+\item najprodavaniji sadržaji
+\item najpopularniji sadržaji
+\item najbolje ocijenjeni sadržaji
+\end{itemize}
+\bigskip
 % odlomak
 \par 
 Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlosti, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, podatke o samom sadržaju i na temelju njih daju personalizirane preporuke za pojedinog korisnika. Kvaliteta sustava mjeri se kroz njegovu sposobnost preporuke sadržaja iz tzv. Long Tail-a. Nepersonalizirani sustavi imaju tendenciju da preporučuju najpopularnije sadržaje, oni postaju sve popularniji i njihov broj se smanjuje. Najpopularniji sadržaji većinom nisu relevanti za pojedinog korisnika. Stoga je važno da sustav daje preporuke ostalih sadržaja kojih je mnogo više, ali koji su relevantni. Slika \ref{fig: long tail} prikazuje odnos tih sadržaja.
