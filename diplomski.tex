@@ -90,19 +90,19 @@ Sustav za davanje preporuka (eng. recommendation systems) spada u područje filt
 \bigskip
 % odlomak
 \par
-Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene pod izrazom stavke mislim na sadržaj koji se preporučuje kao što su knjige, filmovi, video, proizvodi i sl.   
+Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene izraz sadržaj odnosi se na knjige, filmovi, video, proizvodi i sl.   
 % slika 
 \bigskip
 \\ Primjeri lista preporuka nepersonaliziranih sustava:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
-\item trenutno pregledavane stavke (na vrhu \ref{fig:amazon})
+\item trenutno pregledavane stavke (na vrhu slike \ref{fig: amazon nepresonalizirane preporuke} )
+\item korisnici koji su kupili neku stavku kupili su i sljedeće stavke (na sredini slike \ref{fig: amazon nepresonalizirane preporuke} )
 \item najnovije stavke
 \item najprodavanije stavke
 \item najpopularnije stavke
 \item najbolje ocijenjene stavke
 \item sljedeće stavke su često zajedno pregledane
-\item korisnici koji su pogledali / kupili neku stavku pogledali /kupili su i sljedeće stavke
 \end{itemize}
 \bigskip
 % slika
@@ -110,29 +110,46 @@ Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Ne
 \begin{center}
 \includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
 \caption{Primjeri nepersonaliziranih preporuka na web stranici amazon.com}
-\label{fig:amzon preporuke}
+\label{fig: amazon nepresonalizirane preporuke}
 \end{center}
 \end{figure}
 % odlomak
 \par 
-Figure \ref{fig:gull} shows a photograph of a gull.
-Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlosti, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, podatke o samom sadržaju i na temelju njih daju personalizirane preporuke za pojedinog korisnika. Kvaliteta sustava mjeri se kroz njegovu sposobnost preporuke sadržaja iz tzv. Long Tail-a. Nepersonalizirani sustavi imaju tendenciju da preporučuju najpopularnije sadržaje i time ti sadržaji postaju 
+Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, njihovim aktivnostima u prošlosti, njihove ocjene proizvoda, njihove odnose s drugim korisnicima, podatke o samom sadržaju i na temelju njih daju personalizirane preporuke za pojedinog korisnika. Kvaliteta sustava mjeri se kroz njegovu sposobnost preporuke sadržaja iz tzv. Long Tail-a. Nepersonalizirani sustavi imaju tendenciju da preporučuju najpopularnije sadržaje, oni postaju sve popularniji i njihov broj se smanjuje. Najpopularniji sadržaji većinom nisu relevanti za pojedinog korisnika. Stoga je važno da sustav daje preporuke ostalih sadržaja kojih je mnogo više, ali koji su relevantni. Slika \ref{fig: long tail} prikazuje odnos tih sadržaja.
 % slika
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[scale=0.6]{slike/long_tail.jpg}
-\caption{Preporučivanje sadržaja iz Long Tail-a (J. Jovanović, 2014.)}
+\caption{Preporučivanje sadržaja (proizvoda i sl.) iz Long Tail-a (J. Jovanović, 2014.)}
+\label{fig: long tail}
 \end{center}
 \end{figure}
 % odlomak
 \par 
-Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity) u sutavima gdje postoji velika količina sadržaja, a jako mali broj korisnika koji je neki sadržaj ocijenio, pregledao ili kupio, problem korisnika koji nema sličnosti sa niti jednim drugim korisnikom (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks).
+Najčešći nedostaci takvih sustava su: premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
+korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti.
+% odlomak
+\par cold start
+% odlomak
+\par scalability
+% odlomak
+\par sparsity
+% odlomak
+\par black sheep
+% odlomak
+\par diversity
+% odlomak
+\par shilling attacks
+% odlomak
+\par sigurnosti i privatnosti
+% odlomak
+\par podjela
 % lista
 \bigskip
 \\ Podjela perosnaliziranih sustava:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
-\item klasične metode (eng. classic/traditionals methods)
+\item klasične / tradicionalne metode (eng. classic / traditionals methods)
   \begin{itemize}[topsep=2pt]
   \setlength{\parskip}{0pt}
   \item temeljeni na suradnji (eng. collaborative filtering)
@@ -150,7 +167,7 @@ Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premal
 	\end{itemize}
   \item hibridne metode (eng. hybrid methods)
   \end{itemize}
-\item nove metode (eng. novel methods)
+\item nove metode (eng. novel methods) - web 2.0 (Social Web), web 3.0 (Internet of Things)
     \begin{itemize}[topsep=2pt]
 	\setlength{\parskip}{0pt}
     \item temeljeni na osobnosti (eng. personality-based)
@@ -170,7 +187,7 @@ Najčešći nedostaci takvih sustava su pitanje privatnosti i sigurnosti, premal
 %
 Korisnici ocijenjuju objekte na web stranici te se na temelju tih ocjena stvara se model koji pokazuje koliko su slične preferencije korisnica i/ili koliko su slični objekti. Ocjena koju bi korisnik dao nekom objektu, kojeg još nije ocijenio, predviđa se na temelju k najsličnijih korisnika koje zovemo k-najbliži susjedi. Način predviđanja ocjena najčešće je određen sa sljedećom definicijom,
 \begin{defn}
-Neka je $U$ skup korisnika, $I$ skup objekata, $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. Ako korisnik njie ocijenio neki objekt tada je vrijednost funkcije r jednaka nuli. $N_i \subseteq U$ je skup od k korinika koji su najsličniji korisniku $u$. Predviđanje koju ocjenu bi dao korisnik $u$ objektu $i$ dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti korisnika $s:U\times U\rightarrow \R$. 
+Neka je $U$ skup korisnika (eng. users), $I$ skup objekata (eng. items), $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. Ako korisnik njie ocijenio neki objekt tada je vrijednost funkcije r jednaka nuli. $N_i \subseteq U$ je skup od k korinika koji su najsličniji korisniku $u$. Predviđanje koju ocjenu bi dao korisnik $u$ objektu $i$ dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti korisnika $s:U\times U\rightarrow \R$. 
 \[ p:U\times I \rightarrow \R^+, p(u,i) = \overline{r_{u}}+\frac{\sum_{u'\in N_{u,i}}s(u,u')(r(u',i)-\overline{r_{u'}})}{\sum_{u'\in N_{u,i}}|s(u,u')|} \]
 Pri čemu je $N_{u,i} \subseteq N_i$ podskup od najbližih korisnika koji su ocijenili objekt i,a $\overline{r_{u'}}$ aritmetička sredina svih ocjena koje je dao korisnik u.
 \[ \overline{r_{u}}=\frac{\sum_{i\in I}r(u,i)}{card\{i\in I | r(u,i) \neq 0 \} } \]
