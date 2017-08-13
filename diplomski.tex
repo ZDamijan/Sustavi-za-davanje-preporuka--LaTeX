@@ -73,7 +73,7 @@ U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove za
 Sustav za davanje preporuka (eng. recommendation systems) spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti, što bi moglo zanimati ili što je relevantno za korisnika. Najčešći oblik preporuka je lista sadržaja za koje je sustav predvidio da su najrelevantniji za korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka. Područje primjene sustava je veliko što se može vidjeti i iz sljedećih primjera.
 % lista
 \bigskip
-\\ Primjeri web mjesta koje daju preporuke svojim korisnicima i područje njihove primjene:
+\\ Primjeri web sjedišta koje daju preporuke svojim korisnicima i područje njihove primjene:
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
 \item movielens.org, netflix.com, imdb.com, themoviedb.org - filmovi
@@ -90,7 +90,7 @@ Sustav za davanje preporuka (eng. recommendation systems) spada u područje filt
 \bigskip
 % odlomak
 \par
-Problem preporuka definiran je 90-tih godina, ali se danas još razvija i poširuje se područje njegove primjene. 2006. godine problem je populariziran natjecanjem "Netflix Prize". Netflix je web mjesto za gledanje filmova, serija, emisija, TV kanala i sl. Natjecanje je bilo otvorenog tipa i cilj je bio pronaći algoritam koji će poboljšati predikcije Netflix-ovog algoritma. Trebalo je predvidjeti koju će ocjenu korisnik dodijeliti nekom filmu samo na temelju prijašnjih ocjena korisnika, bez dodatnih informacija o korisnicima i filmovima. Nagradu od 1.000.000 američkih dolara odnio je tim "BellKor's Pragmatic Chaos" koji je poboljšao predikcije za 10.06\%.
+Problem preporuka definiran je 90-tih godina, ali se danas još razvija i poširuje se područje njegove primjene. 2006. godine problem je populariziran natjecanjem "Netflix Prize". Netflix je američko poduzeće koje ima web sjedište za gledanje filmova, serija, emisija i TV kanala na zahtjev. Natjecanje je bilo otvorenog tipa i cilj je bio pronaći algoritam koji će poboljšati predikcije Netflix-ovog algoritma. Trebalo je predvidjeti koju će ocjenu korisnik dodijeliti nekom filmu samo na temelju prijašnjih ocjena korisnika, bez dodatnih informacija o korisnicima i filmovima. Nagradu od 1.000.000 američkih dolara 2009. godine odnio je tim "BellKor's Pragmatic Chaos" koji je poboljšao predikcije za 10.06\%. Netflix je 2010. odine objavio da neće biti drugog natjecanje zbog federalne tužnbe zbog narušavanja privatnosti. Naime, bez obzira što su podaci o korisnicima i filmovima bili anonimni, moglo se povezati pojedine korisnike sa ocijenama filmova na web sjedištu "IMDB". 
 % odlomak
 \par
 Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Nepersonalizirani sustavi su najednostavniji i ne uzimaju u obzir preferencije korisnike te daju svim korisnicima jednake preporuke. Prednost je što su jednostavni za implementaciju i lako je prikupiti podatke. Zbog širokog spektra područja primjene izraz sadržaj odnosi se na knjige, filmovi, video, proizvodi i ostalo što sustav preporučuje.   
@@ -144,7 +144,10 @@ korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili 
 \par sigurnosti i privatnosti
 % odlomak
 \par
-podjela
+Prve metode za davanje preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispsuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Ova metoda može imati različite implementacije ovisno kako mjerimo sličnost između korinika i na koji način računamo predikciju ocjena. Ovaj tip metode pripada grupi sustava temeljenih na memoriji jer se direktno primjenjuju na podatke bez predprocesiranja. Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. 
+% odlomak
+\par
+kol filt, bazirane n memoriji
 % lista
 \bigskip
 \\ Podjela perosnaliziranih sustava:
@@ -166,7 +169,6 @@ podjela
     \item temeljeni na ograničenjima (eng. constraint-based)
 	\item temeljeni na slučajevima (eng. case-based)
 	\end{itemize}
-  \item hibridne metode (eng. hybrid methods)
   \end{itemize}
 \item nove metode (eng. novel methods) - web 2.0 (Social Web), web 3.0 (Internet of Things)
     \begin{itemize}[topsep=2pt]
@@ -177,6 +179,7 @@ podjela
     \item temeljeni na oznakama (eng. tag-based ili keyword-based)
     \item temeljeni na kontekstu (eng. context-based)
 	\end{itemize}
+\item hibridne metode (eng. hybrid methods)
 \end{itemize}
 \bigskip
 % poglavlje
