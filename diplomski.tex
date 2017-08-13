@@ -70,6 +70,7 @@ U ovom radu opisan je općeniti sustav za davanje preporuka na webu i njegove za
 \end{intro}
 % poglavlje
 \chapter{Opis i podjela sustava za davanje preporuka na webu}	
+\label{Opis i podjela sustava za davanje preporuka na webu}
 Sustav za davanje preporuka (eng. recommendation systems) spada u područje filtriranje informacija i čini ga skup metoda s kojima analizira dostupne podatke kako bi predvidio što bi se moglo svidjeti, što bi moglo zanimati ili što je relevantno za korisnika. Najčešći oblik preporuka je lista sadržaja za koje je sustav predvidio da su najrelevantniji za korisnika. Primarni razlog potrebe za takvim sustavima je previše raspoloživih informacija (eng. information overload) i raznih mogćnosti interakcije (eng. interaction overload), na primjer: pregledavanje, kupovanje, označavanje, ocjenjivanje, komentiranje, praćenje itd. Web mjesta kako bi korisnicima olakšali pronalaženje i dostupnost informacija te time povećali posjećnost i profitabilnost implementiraju sustave za davanje preporuka. Područje primjene sustava je veliko što se može vidjeti i iz sljedećih primjera.
 % lista
 \bigskip
@@ -126,8 +127,9 @@ Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, nji
 \end{figure}
 % odlomak
 \par 
-Najčešći nedostaci takvih sustava su: premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
-korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti (eng. diversity) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti.
+Najčešći nedostaci personaliziranih sustava su: premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
+korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti.
+još: Inflexibility, Quality of predictions
 % odlomak
 \par cold start
 % odlomak
@@ -137,20 +139,28 @@ korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili 
 % odlomak
 \par black sheep
 % odlomak
-\par diversity
+\par diversity - overfitting
 % odlomak
 \par shilling attacks
 % odlomak
 \par sigurnosti i privatnosti
 % odlomak
 \par
-Prve metode za davanje preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispsuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Ova metoda može imati različite implementacije ovisno kako mjerimo sličnost između korinika i na koji način računamo predikciju ocjena. Ovaj tip metode pripada grupi sustava temeljenih na memoriji jer se direktno primjenjuju na podatke bez predprocesiranja. Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. 
+Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispisuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. Kako bi se smanjila složenost umjesto da se računa sličnost između korisnika, računa se sličnost između sadržaja. Te se preporučuju sadržaji koji su najsličniji onima koje je korisnik najviše ocjenio. Skup sadržaja je u praksi puno manji od skupa korisnika te se u njemu događaju manje promjena što je veću skalabilnost ovoj metodi. Ove dvije metode pripadaju grupi sustava temeljenih na memoriji (eng. memory-based) jer se direktno primjenjuju na podatke bez predprocesiranja. One mogu imati različite implementacije ovisno kojom skalom korisnik ocijenjuje sadržaje, kako mjerimo sličnost između korisnika i na koji način računamo predikciju ocjena. Formalni opis i primjeri različitih implementacija navedenih metoda dan je u sekciji \ref{sec: sustavi temeljeni na memoriji}.
 % odlomak
 \par
-kol filt, bazirane n memoriji
+Prethodno opisane metode kao ulaz koriste surove podatke. Svaki put je potrebno računati predkcije na svim podacima, što usporava sustav. Sustavi temeljeni na modelu (eng. model-based) nad podacima izrađuju model te kasnije ne temelju njega, a ne svih podataka, daje preporuke čime se ubrzava rad sustava. Modeli se izrađuju pomoću algoritama strojnog učenja (eng. machine learning) i rudarenja podacima (eng. data mining). Formalni opis i primjeri različitih algoritama za izradu modela dan je u sekciji \ref{sec: sustavi temeljeni na modelu}.
+% odlomak
+\par
+Sustavi temeljeni na memoriji i modelu pripadaju skupini sustava temeljenih na suradnji (eng. collaborative filtering) jer se baziraju na podacima dobivenim zajedničkim radnjama korisnika, kao što su ocijenjivanje, kupovanje, pregledavanje i sl.
+% odlomak
+\par
+Sustavi temeljni na suradnji korisnika 
+\par
+knowledge-based
 % lista
 \bigskip
-\\ Podjela perosnaliziranih sustava:
+\\ Sažeti pregled podjele personaliziranih sustava
 \begin{itemize}[topsep=2pt]
 \setlength{\parskip}{0pt}
 \item klasične / tradicionalne metode (eng. classic / traditionals methods)
@@ -160,7 +170,7 @@ kol filt, bazirane n memoriji
     \begin{itemize}[topsep=2pt]
     \setlength{\parskip}{0pt}
     \item temeljeni na memoriji (eng. memory-based): temeljeni na sličnosti korisnika (eng. user-based ili user-user collaborative filtering), temeljeni na slčnosti objekata (eng. item-based ili item-item collaborative filtering)
-    \item temeljeni na modelu (eng. model-based), razvijaju se modeli pomoću algoritama rudarenja podacima (eng. data mining) i strojnog učenja (eng. machine learning)
+    \item temeljeni na modelu (eng. model-based)
     \end{itemize}
   \item temeljeni na sadržaju (content-based)
   \item temeljeni na znanju (eng. knowledge-based)
@@ -184,10 +194,13 @@ kol filt, bazirane n memoriji
 \bigskip
 % poglavlje
 \chapter{Sustavi temeljeni na suradnji}
+\label{ch: sustavi temeljeni na suradnji}
 % odlomak
-\par Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. U takvim algoritmima kreiraju se modeli korisnika i pojedinih elemenata sadržaja. Dijelimo ih na one temeljene na sličnosti korisnika, sličnosti korisnika i one temeljene na modelu.
-%
-\section{Sustavi temeljeni na sličnosti korisnika}
+\par 
+Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. U takvim algoritmima kreiraju se modeli korisnika i pojedinih elemenata sadržaja. Dijelimo ih na one temeljene na sličnosti korisnika, sličnosti korisnika i one temeljene na modelu.
+% sekcija
+\section{Sustavi temeljeni na memoriji}
+\label{sec: sustavi temeljeni na memoriji}
 %
 Korisnici ocijenjuju objekte na web stranici te se na temelju tih ocjena stvara se model koji pokazuje koliko su slične preferencije korisnica i/ili koliko su slični objekti. Ocjena koju bi korisnik dao nekom objektu, kojeg još nije ocijenio, predviđa se na temelju k najsličnijih korisnika koje zovemo k-najbliži susjedi. Način predviđanja ocjena najčešće je određen sa sljedećom definicijom,
 \begin{defn}
@@ -230,8 +243,10 @@ U prilagođenoj kosinusovoj sličnosti uzima se u obzir i prosječna ocjena kori
 pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\overline{r_v}$ je aritmetička sredina svih ocjena korisnika v.
 \end{defn}
 %
-\section{Sustavi temeljeni na sličnosti objekata}
-\par U ovim sustavima se na temelju ocjena korisnika kreira model u kojem je se određuje sličmost između objekata. Za izračun k-najbliži susjeda u potrebno je $O(|U|)$ koraka, moguće i više, ovisno o načinu računanja funkcije sličnosti. U sustavima sa velikim brojem korisnika potreban je brži način predikcije ocjena. Skalabilnost dobivamo ako prethodno izračunamo susjede svakom objektu, smatra se da su sličnosti između ovjekata stabilniji od sličnosti korisnika, pa kod izračuna predikcija koristimo te unaprijed određene susjede. Objekti su sličniji ako imaju podjednake ocjene korisnika. Slično kao prethodnim sustavima, bira se k-najbližih susjeda nekog objekta i na temelju ocjena korisnika tim susjedima i funkcije sličnosti predviđa se ocjena.
+\par
+Sustavi temeljeni na sličnosti objekata
+\par 
+ovim sustavima se na temelju ocjena korisnika kreira model u kojem je se određuje sličmost između objekata. Za izračun k-najbliži susjeda u potrebno je $O(|U|)$ koraka, moguće i više, ovisno o načinu računanja funkcije sličnosti. U sustavima sa velikim brojem korisnika potreban je brži način predikcije ocjena. Skalabilnost dobivamo ako prethodno izračunamo susjede svakom objektu, smatra se da su sličnosti između ovjekata stabilniji od sličnosti korisnika, pa kod izračuna predikcija koristimo te unaprijed određene susjede. Objekti su sličniji ako imaju podjednake ocjene korisnika. Slično kao prethodnim sustavima, bira se k-najbližih susjeda nekog objekta i na temelju ocjena korisnika tim susjedima i funkcije sličnosti predviđa se ocjena.
 \begin{defn}
 Neka je $U$ skup korisnika, $I$ skup objekata, $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. $S \subseteq I$ je skup k-najbližih susjeda objekta $i$. Predviđanje koju ocjenu bi dao korisnik $u$ objektu $i$ dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti objekata $s:I\times I\rightarrow \R$. 
 \[ p:U\times I \rightarrow \R^+, p(u,i) = \frac{\sum_{j\in S}s(i,j)r(u,j)}{\sum_{j\in S}|s(i,j)|} \]
@@ -256,7 +271,10 @@ Također i u ovom modelu potrebno je odrediti funkciju sličnosti. Kosinusova sl
 \end{center}
 \end{figure}
 %
+
+% sekcija
 \section{Sustavi temeljeni na modelu}
+\label{sec: sustavi temeljeni na modelu}
 %
 Prethodno dva opisana sustava temnelje svoje predikciju na svim ocjenama korisnika, tj. na cijeloj bazi korisnika i objekata pa takve sustave zovemo temeljeni na memoriji. Sustavi temeljeni na modelu kreiraju neki model pomoću algoritama rudarenja podataka  i strojnog učenja (eng. machine learning) nad podacima. Prednost ovakvog pristupa je što se postižu bolja skalabilnost (brže vrijeme izvršavanja i manje memorije kod većih sustava) i postižu se bolje predikcije na rasprešenim podacima. Nedostatatak je taj što je potrebna zahtjevna izrada modela i treba paziti koji se model primjenuje jer dolazi do određenog gubitka podataka.
 \bigskip
