@@ -98,7 +98,7 @@ Sustave za davanje preporuka dijelimo na nepersonalizirane i personalizirane. Ne
 % slika
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[scale=0.8]{slike/amazon-non_personalized_recom.png}
+\includegraphics[scale=1]{slike/amazon-non_personalized_recom.png}
 \caption{Primjeri nepersonaliziranih preporuka na web stranici amazon.com}
 \label{fig: amazon nepresonalizirane preporuke}
 \end{center}
@@ -128,8 +128,7 @@ Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, nji
 % odlomak
 \par 
 Najčešći nedostaci personaliziranih sustava su: premalo ocjena korisnika početku rada (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
-korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti. Objašnjenje i vizualni prikaz navednih nedostataka dan je u \ref{ch: nedostaci personaliziranih sustava} poglavlju.
-još: Inflexibility, Quality of predictions, filter bubble
+korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), nefleksibilnost (eng. ineflexibility), izolacija preporuka (eng. filter bubble), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti. Objašnjenje navednih nedostataka dan je u \ref{ch: nedostaci personaliziranih sustava} poglavlju.
 % odlomak
 \par
 Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispisuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. 
@@ -150,17 +149,14 @@ Kada se sustavi primjenjuju na sadržaje koje se vrlo rijetko kupuju i ocjenjuju
 Širenjem društvenih mreža (eng. social web) i spajanjem različitih uređaje na Internet (eng. Internet of thinks) dolazi do razvoja novih metoda preporuka. Metode temeljene na spolu, država, nacionalnosti i sličnih atributa pripadaju sustavima temeljeni na demografiji (eng. demographic-based). Korisnici na društvenim mrežama imaju prijatelje ili pratitelje, preporuke koje se baziraju na takve odnose čine sustave temeljeni na zajednici (eng. social-based ili community-based). Također u takvim mrežama moguće je izraditi profil korisnika te na neki način odrediti njegovu osobnost pa za takve sustave kažemo da su temeljeni na osobnosti. Na nekim web sjedištima omogućeno je korisnicima da slobodno označavaju sadržaj oznakama ili ključnim riječima (eng. folksonomy) što omogućuje izradu sustava temeljene na oznakama (eng. tag-based ili keyword-based). Sustave koje u obzir uzimaju kontekst u kojem se korisnik nalazi (na primjer: lokacija, vrijeme, raspoloženje, dan u tjednu, svrha pretrage) kažemo da se temeljeni na kontekstu. Pregled novih metoda nalazi se u \ref{ch: pregled novih metode} poglavlju.
 % odlomak
 \par
-Kako bi se dobile šro bolje preporuke i i(eng. hybrid methods)
+Kako bi se dobile šro bolje preporuke i savladali nedostaci metode se najčešće kombiniraju te ih nazivamo hibridnim metodama (eng. hybrid methods). Načine povezivanje i primjere možete pronači u
 \ref{ch: hibridne metode} poglavlju.
 % odlomak
 \par
 U sustavima koji se temelje na oznakama koje korisnici dodjeljuju sadržajima javlja se problem da neke riječi mogu imati više značenja, više oblika i da više riječi imaju isto značenje. Na koje načine taj problem riješiti i vlastiti doprinos poboljšanju takvih sustava odrađeno je \ref{ch: sustav temeljen na oznakama - ucenje odnosa izmedju oznaka} poglavlju.
 % odlomak
 \par
-\ref{ch: evalucija sustava} poglavlju.
-% odlomak
-\par
-\ref{ch: trenutni izazovi i buducnost} poglavlju.
+Zbog velikog broja metoda, njezini različitih implementacija, kombinacija i mogućih poboljšanja potrebno je razviti nečine kako sustave evaluirati kako bi se pojedinu domenu primjene izabrao najprikladniji. Problem i načini evalucije opisani su u \ref{ch: evalucija sustava} poglavlju, a trenutni izazovi i budućnost sustava za davanje preporuka u \ref{ch: trenutni izazovi i buducnost} poglavlju.
 % lista
 \bigskip
 \\ Sažeti pregled podjele personaliziranih sustava
@@ -195,6 +191,14 @@ U sustavima koji se temelje na oznakama koje korisnici dodjeljuju sadržajima ja
 \item hibridne metode (eng. hybrid methods)
 \end{itemize}
 \bigskip
+% slika
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[scale=0.6]{slike/primjer_ocjene.jpg}
+\caption{Primjer ocjena koji su korisnici dodijelili pojedinom sadržaju}
+\label{fig: primjer ocjena}
+\end{center}
+\end{figure}
 
 % poglavlje
 \chapter{Nedostaci personaliziranih sustava}
