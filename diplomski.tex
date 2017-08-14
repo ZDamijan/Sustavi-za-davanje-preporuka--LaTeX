@@ -128,31 +128,17 @@ Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, nji
 % odlomak
 \par 
 Najčešći nedostaci personaliziranih sustava su: premalo ocjena korisnika početku rada (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
-korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti.
+korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti. Objašnjenje i vizualni prikaz navednih nedostataka dan je u \ref{ch: nedostaci personaliziranih sustava} poglavlju.
 još: Inflexibility, Quality of predictions, filter bubble
 % odlomak
-\par cold start
-% odlomak
-\par scalability
-% odlomak
-\par sparsity
-% odlomak
-\par black sheep
-% odlomak
-\par diversity - overfitting
-% odlomak
-\par shilling attacks
-% odlomak
-\par sigurnosti i privatnosti
+\par
+Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispisuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. 
 % odlomak
 \par
-Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispisuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. Kako bi se smanjila složenost umjesto da se računa sličnost između korisnika, računa se sličnost između sadržaja. Te se preporučuju sadržaji koji su najsličniji onima koje je korisnik najviše ocjenio. Skup sadržaja je u praksi puno manji od skupa korisnika te se u njemu događaju manje promjena što je veću skalabilnost ovoj metodi. Ove dvije metode pripadaju grupi sustava temeljenih na memoriji (eng. memory-based) jer se direktno primjenjuju na podatke bez predprocesiranja. One mogu imati različite implementacije ovisno kojom skalom korisnik ocijenjuje sadržaje, kako mjerimo sličnost između korisnika i na koji način računamo predikciju ocjena.
+Kako bi se smanjila složenost umjesto da se računa sličnost između korisnika, računa se sličnost između sadržaja te se preporučuju sadržaji koji su najsličniji onima koje je korisnik najbolje ocjenio. Skup sadržaja je u praksi puno manji od skupa korisnika te se u njemu događaju manje promjena što je veću skalabilnost ovoj metodi. Ove dvije metode pripadaju grupi sustava temeljenih na memoriji (eng. memory-based) jer se direktno primjenjuju na podatke bez predprocesiranja. One mogu imati različite implementacije ovisno kojom skalom korisnik ocijenjuje sadržaje, kako mjerimo sličnost između korisnika i na koji način računamo predikciju ocjena.
 % odlomak
 \par
-Prethodno opisane metode kao ulaz koriste surove podatke. Svaki put je potrebno računati predkcije na svim podacima, što usporava sustav. Sustavi temeljeni na modelu (eng. model-based) nad podacima izrađuju model te kasnije ne temelju njega, a ne svih podataka, daje preporuke čime se ubrzava rad sustava. Modeli se izrađuju pomoću algoritama strojnog učenja (eng. machine learning) i rudarenja podacima (eng. data mining). 
-% odlomak
-\par
-Sustavi temeljeni na memoriji i modelu pripadaju skupini sustava temeljenih na suradnji (eng. collaborative filtering) jer se baziraju na podacima dobivenim zajedničkim radnjama korisnika, kao što su ocijenjivanje, kupovanje, pregledavanje i sl. Formalni opis i primjeri različitih implementacija ovih metoda odrađeni su u \ref{ch: sustavi temeljeni na suradnji} poglavlju.
+Prethodno opisane metode kao ulaz koriste surove podatke. Svaki put je potrebno računati predkcije na svim podacima, što usporava sustav. Sustavi temeljeni na modelu (eng. model-based) nad podacima izrađuju model te kasnije ne temelju njega, a ne svih podataka, daje preporuke čime se ubrzava rad sustava. Modeli se izrađuju pomoću algoritama strojnog učenja (eng. machine learning) i rudarenja podacima (eng. data mining). Sustavi temeljeni na memoriji i modelu pripadaju skupini sustava temeljenih na suradnji (eng. collaborative filtering) jer se baziraju na podacima dobivenim zajedničkim radnjama korisnika, kao što su ocijenjivanje, kupovanje, pregledavanje i sl. Njihov formalni opis i primjeri različitih implementacija odrađeni su u \ref{ch: sustavi temeljeni na suradnji} poglavlju.
 % odlomak
 \par
 Kada se sustavi nalazi puno sadržaja, a korisnici ih jako malo ocjenjuju javlja se problem rapršenosti podataka. Zato se razvijaju sustavi temeljeni na sadržaju (eng. content-based). Pomoću funkcija sličnosti (udaljenosti) izračunava se sličnost između sadržaja na temelju njegovih atributa i ključnih riječi. Korisniku se preporučuju najsličniji sadržaji onima koje je korisnik najbolje ocijenio. Primjeri implementacije je dan u \ref{ch: sustavi temeljeni na sadrzaju} poglavlju.
@@ -161,14 +147,20 @@ Kada se sustavi nalazi puno sadržaja, a korisnici ih jako malo ocjenjuju javlja
 Kada se sustavi primjenjuju na sadržaje koje se vrlo rijetko kupuju i ocjenjuju, kao što su automobili, smještaj, digitalne kamere, tada ne možemo primijeniti gore navedene metode je raspršenost podataka jako mala. Da bi se davale preporuke u takcvim slučajima potrebno je pohraniti sve relevantne podatke o sadržaju. Za takve sustave kažemo da su temeljeni na znanju (eng. knowledge-based). Korisnik može pretraživati sadržaje tako da unosi ograničanje preko tražilice, koja može imati različite oblike unosa. Preporuke moraju zadovoljavati dana ograničenja. Ti sustavi su temeljeni na ograničenjima (eng. constraint-based). U sustavima temeljeni na slučajevima (eng. case based) preporuke se temelje na sličnosti zadanih zahtjeva za pretragu. Navedeni sustavi detaljnije su opisani u \ref{ch: sustavi temeljeni na znanju} poglavlju.
 % odlomak
 \par
-
-Pregled novih metoda nalazi se u  \ref{ch: pregled novih metode} poglavlju.
-\ref{ch: hibridne metode} poglavlju.
-\ref{ch: sustav temeljen na oznakama}
+Širenjem društvenih mreža (eng. social web) i spajanjem različitih uređaje na Internet (eng. Internet of thinks) dolazi do razvoja novih metoda preporuka. Metode temeljene na spolu, država, nacionalnosti i sličnih atributa pripadaju sustavima temeljeni na demografiji (eng. demographic-based). Korisnici na društvenim mrežama imaju prijatelje ili pratitelje, preporuke koje se baziraju na takve odnose čine sustave temeljeni na zajednici (eng. social-based ili community-based). Također u takvim mrežama moguće je izraditi profil korisnika te na neki način odrediti njegovu osobnost pa za takve sustave kažemo da su temeljeni na osobnosti. Na nekim web sjedištima omogućeno je korisnicima da slobodno označavaju sadržaj oznakama ili ključnim riječima (eng. folksonomy) što omogućuje izradu sustava temeljene na oznakama (eng. tag-based ili keyword-based). Sustave koje u obzir uzimaju kontekst u kojem se korisnik nalazi (na primjer: lokacija, vrijeme, raspoloženje, dan u tjednu, svrha pretrage) kažemo da se temeljeni na kontekstu. Pregled novih metoda nalazi se u \ref{ch: pregled novih metode} poglavlju.
 % odlomak
 \par
-\ref{ch: evalucija sustava}
-\ref{ch: trenutni izazovi i buducnost}
+Kako bi se dobile šro bolje preporuke i i(eng. hybrid methods)
+\ref{ch: hibridne metode} poglavlju.
+% odlomak
+\par
+U sustavima koji se temelje na oznakama koje korisnici dodjeljuju sadržajima javlja se problem da neke riječi mogu imati više značenja, više oblika i da više riječi imaju isto značenje. Na koje načine taj problem riješiti i vlastiti doprinos poboljšanju takvih sustava odrađeno je \ref{ch: sustav temeljen na oznakama - ucenje odnosa izmedju oznaka} poglavlju.
+% odlomak
+\par
+\ref{ch: evalucija sustava} poglavlju.
+% odlomak
+\par
+\ref{ch: trenutni izazovi i buducnost} poglavlju.
 % lista
 \bigskip
 \\ Sažeti pregled podjele personaliziranih sustava
@@ -203,6 +195,11 @@ Pregled novih metoda nalazi se u  \ref{ch: pregled novih metode} poglavlju.
 \item hibridne metode (eng. hybrid methods)
 \end{itemize}
 \bigskip
+
+% poglavlje
+\chapter{Nedostaci personaliziranih sustava}
+\label{ch: nedostaci personaliziranih sustava}
+
 % poglavlje
 \chapter{Sustavi temeljeni na suradnji}
 \label{ch: sustavi temeljeni na suradnji}
@@ -373,8 +370,8 @@ Neka je $C=\frac{1}{|U|-1}\tilde{R}^T\tilde{R}$ matrica kovarijanci. Matrica C j
 \label{ch: hibridne metode}
 
 %  poglavlje
-\chapter{Sustav temeljen na oznakama}
-\label{ch: sustav temeljen na oznakama}
+\chapter{Sustav temeljen na oznakama - učenje odnosa između oznaka}
+\label{ch: sustav temeljen na oznakama - ucenje odnosa izmedju oznaka}
 
 %  poglavlje
 \chapter{Evaluacija sustava}	
