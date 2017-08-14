@@ -127,9 +127,9 @@ Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, nji
 \end{figure}
 % odlomak
 \par 
-Najčešći nedostaci personaliziranih sustava su: premalo informacija o novom korisniku ili novom sadržaju (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
+Najčešći nedostaci personaliziranih sustava su: premalo ocjena korisnika početku rada (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
 korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti.
-još: Inflexibility, Quality of predictions
+još: Inflexibility, Quality of predictions, filter bubble
 % odlomak
 \par cold start
 % odlomak
@@ -152,12 +152,23 @@ Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje k
 Prethodno opisane metode kao ulaz koriste surove podatke. Svaki put je potrebno računati predkcije na svim podacima, što usporava sustav. Sustavi temeljeni na modelu (eng. model-based) nad podacima izrađuju model te kasnije ne temelju njega, a ne svih podataka, daje preporuke čime se ubrzava rad sustava. Modeli se izrađuju pomoću algoritama strojnog učenja (eng. machine learning) i rudarenja podacima (eng. data mining). Formalni opis i primjeri različitih algoritama za izradu modela dan je u sekciji \ref{sec: sustavi temeljeni na modelu}.
 % odlomak
 \par
-Sustavi temeljeni na memoriji i modelu pripadaju skupini sustava temeljenih na suradnji (eng. collaborative filtering) jer se baziraju na podacima dobivenim zajedničkim radnjama korisnika, kao što su ocijenjivanje, kupovanje, pregledavanje i sl.
+Sustavi temeljeni na memoriji i modelu pripadaju skupini sustava temeljenih na suradnji (eng. collaborative filtering) jer se baziraju na podacima dobivenim zajedničkim radnjama korisnika, kao što su ocijenjivanje, kupovanje, pregledavanje i sl. 
 % odlomak
 \par
-Sustavi temeljni na suradnji korisnika 
+Najveći nedostatak takvih sustava je problem premalo ocjena na početku rada pa se dobivaju loše predikcije i neki saržaji nisu ni ocjenjeni. Sličan problem se javlja kad se novi korisnik registrira te nije dodijelio nikakve ocjene ili kad se u sustav doda novi sadržaj. Zato se razvijaju sustavi temeljeni na sadržaju (eng. content-based).  
+\ref{ch: sustavi temeljeni na sadrzaju}
+% odlomak
 \par
-knowledge-based
+Kada se sustavi primjenjuju na sadržaje koje se rijetko kupuju i ocjenjuju, kao što su automobili, smještaj, digitalne kamere, tada ne možemo primijeniti gore navedene metode. Sustav teba sadržavati bazu podataka 
+\ref{ch: sustavi temeljeni na znanju}
+% odlomak
+\par
+\ref{ch: pregled novih metode}
+\ref{ch: sustav temeljen na oznakama}
+% odlomak
+\par
+\ref{ch: evalucija sustava}
+\ref{ch: trenutni izazovi i buducnost}
 % lista
 \bigskip
 \\ Sažeti pregled podjele personaliziranih sustava
@@ -338,20 +349,33 @@ Neka je $C=\frac{1}{|U|-1}\tilde{R}^T\tilde{R}$ matrica kovarijanci. Matrica C j
 \subsection{Markovljevi procesi}
 %
 \subsection{Grupiranje podataka}
-%
-\chapter{Sustavi temeljeni na sadržaju}	
 
-%
-\chapter{Sustavi temeljeni na znanju}	
-%
+% poglavlje
+\chapter{Sustavi temeljeni na sadržaju}	
+\label{ch: sustavi temeljeni na sadrzaju}
+
+% poglavlje
+\chapter{Sustavi temeljeni na znanju}
+\label{ch: sustavi temeljeni na znanju}
+
+%  poglavlje
 \chapter{Pregled novih metoda}	
-%
-\chapter{Sustav temeljen na oznakama}	
-%
+\label{ch: pregled novih metode}
+
+%  poglavlje
+\chapter{Sustav temeljen na oznakama}
+\label{ch: sustav temeljen na oznakama}
+
+%  poglavlje
 \chapter{Evaluacija sustava}	
-%
-\chapter{Trenutni izazovi i budućnost}	
-%
+\label{ch: evalucija sustava}
+
+%  poglavlje
+\chapter{Trenutni izazovi i budućnost}
+\label{ch: trenutni izazovi i buducnost}
+
+
+% test
 \chapter{Primjeri pisanja algoritama}	
 \begin{algorithm}[H]
 \KwIn{
