@@ -246,6 +246,7 @@ Pri čemu je $N_{u,i} \subseteq N_i$ podskup od najbližih korisnika koji su oci
 % odlomak
 \par
 Iz prethodne definicje vidimo da je za ovaj model moguće na razne načine zadati funkciju sličnosti između korisnika. Niže su navedeni primjeri funkcija sličnosti i kako se one računaju.
+% lista
 \bigskip
 \\Primjeri funkcija sličnosti:
 \begin{itemize}[topsep=2pt]
@@ -253,27 +254,40 @@ Iz prethodne definicje vidimo da je za ovaj model moguće na razne načine zadat
 \item Pearsnov koeficijent korelacije (eng. Pearson correlation)
 \item Spearmanov koeficijent korelacije (eng. Spearman rank correlation)
 \item kosinusova sličnost (eng. cosine similarity)
+\item prilagođena kosinusova sličnost (eng. adjusted cosine similarity)
 \end{itemize}
+% definicija
 \begin{defn} (Pearsonov koeficijent korelacije)
 \\Neka su $u, v\in U$ neki korisnici i $I_u, I_v$ skup objekata koje je ocijenio korisnik u, odnosno v. Pearsnov koeficijent korelacije zadan je sljedećom formulom.
 \[ s:U\times U \rightarrow \R, s(u,v) = \frac{\sum_{i\in I_u\cap I_v}(r(u,i)-\overline{r_u})(r(v,i)-\overline{r_v})}{\sqrt[]{\sum_{i\in I_u\cap I_v}(r(u,i)-\overline{r_u})^2} \sqrt[]{\sum_{i\in I_u\cap I_v}(r(v,i)-\overline{r_v})^2} },  \]
 pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\overline{r_v}$ je aritmetička sredina svih ocjena korisnika v.
 \end{defn}
-%
+% napomena
 \begin{rem} (Spearmanov koeficijent korelacije)
 \\Računa se kao Pearsonov koeficijent korelacije, samo su ulazne vrijednosti rangovi ocjena, a ne same ocjene. Najvećoj ocjeni dodjeljen je rang 1, sve manjim ocjenama dodijeljeni su sve veći rangovi.
 \end{rem}
-%
+% deinicija
 \begin{defn} (kosinusova sličnost)
 \\Korisnici su reprezentirani s vektorima $|I|$-dimenzionalnim vektorima pri čemi i-ta pozicja predstavlja ocjenu koju je korisnik dao objektu i. Neka su $r_u$ i $r_v$ vektori koji predstavljaju korinike u i v.
 \[ s:U\times U \rightarrow \R, s(u,v) = \frac{r_u\cdot r_v}{||r_u||_2 \: ||r_v||_2} = \frac{\sum_i r(u,i)\: r(v,i) }{\sqrt{\sum_i r(u,i)^2}\:\sqrt{\sum_i r(v,i)^2}}  \]
+\end{defn}
+% napomena
+\begin{rem} 
 U prilagođenoj kosinusovoj sličnosti uzima se u obzir i prosječna ocjena korisnika.
 \[ s(u,v) = \frac{\sum_i (r(u,i)-\overline{r_u})(r(v,i)-\overline{r_v}) }{\sqrt{\sum_i (r(u,i)-\overline{r_u})^2}\:\sqrt{\sum_i (r(v,i)-\overline{r_v})^2}},  \] 
 pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\overline{r_v}$ je aritmetička sredina svih ocjena korisnika v.
-\end{defn}
+\end{rem}
 % odlomak
 \par
-a
+Definirane funkcije sličnosti implementirane su u Matlabu, pri čemu je R ulazna matrica koja na $(i,j)$-poziciji ima vrijednost funkcije $r(i,j)$, tj. ocjenu koju je korisnik "i" dodijelio sadržaju "j". Izlas je matrica S koja na poziciji $(i,j)$-poziciji ima izračunatu vrijednost funkcije sličnosti $s_{i,j}$, što predstavlja sličnost između korisnika "i" i korisnika "j".
+% programski kod
+\lstinputlisting[breaklines=true, caption=Test from file]{kodovi/pearson_correlation.m}
+% programski kod
+\lstinputlisting[breaklines=true, caption=Test from file]{kodovi/spearman_correlation.m}
+% programski kod
+\lstinputlisting[breaklines=true, caption=Test from file]{kodovi/cosine_correlation.m}
+% programski kod
+\lstinputlisting[breaklines=true, caption=Test from file]{kodovi/adjusted_cosine_correlation.m}
 % podsekcija
 \subsection{Sustavi temeljeni na sličnosti sadržaja}
 \par 
