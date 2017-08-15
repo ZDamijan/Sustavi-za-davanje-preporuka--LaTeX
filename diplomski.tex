@@ -127,8 +127,7 @@ Prednost personaliziranih sustava je što analiziraju podatke o korisnicima, nji
 \end{figure}
 % odlomak
 \par 
-Najčešći nedostaci personaliziranih sustava su: premalo ocjena korisnika početku rada (eng. cold start), problem skalabilnosti (eng. scalability), problem rapršenosti (eng. sparsity),
-korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), nefleksibilnost (eng. ineflexibility), izolacija preporuka (eng. filter bubble), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting) i problem manipulacije sustava (shilling attacks) te pitanje sigurnosti i privatnosti. Objašnjenje navednih nedostataka dan je u \ref{ch: nedostaci personaliziranih sustava} poglavlju.
+Najčešći nedostaci personaliziranih sustava su: problem rapršenosti (eng. sparsity), premalo ocjena korisnika na početku rada (eng. cold start), problem novih korisnika ili sadržaja (eng. new user, new item), korisnik ili sadržaj koji nema sličnosti sa niti jednim drugim korisnikom ili sadržajem (eng. black sheep), problem skalabilnosti (eng. scalability), nefleksibilnost (eng. ineflexibility), problem raznolikosti ili pretreniranja (eng. diversity ili overfitting), izolacija preporuka (eng. filter bubble) i problem manipulacije sustava (shilling attacks) te pitanje privatnosti. Objašnjenje navednih nedostataka dan je u \ref{ch: nedostaci personaliziranih sustava} poglavlju.
 % odlomak
 \par
 Prve metode za davanje personaliziranih preporuka bazirane su na ocjenama koje korisnici dodijeljuju sadržajima. Za pojedinog korisnika na temelju njegovih ocjena pronalazi se k-najsličnijih korisnika (eng. k-nearest neighbors, kratica: kNN), za razliku od nepersonaliziranih sustava koji uzimaju u obzir sve ocjene. Predikcija s kojom ocjenom bi promatrani korisnik ocijenio neki saržaj proizlazi agregacijom ocjena njegovih k-najbližih susjeda. Zatim se korisniku ispisuje lista preporuka koja sadrži n sadržaja sa najboljim predikcijama ocjena (eng. top n recommendation). Bez obzira na jednostavnost implementacije i lakoće razumjevanja metode, nije ju moguće koristiti u praksi jer korisnik želi preporuke u stvarnom vremenu. Kako je broj korisnika i sadržaja u praksi vrlo velik onda složenost ovakvih metoda onemogujuće rad u stvarnom vremenu. 
@@ -205,33 +204,49 @@ Zbog velikog broja metoda, njezini različitih implementacija, kombinacija i mog
 \label{ch: nedostaci personaliziranih sustava}
 % odlomak
 \par 
-Da bi bolje razumjelo i opravdalo uvođenje novih i izmjena starih metoda za davanje personaliziranih preporuka potrebno je proučiti moguće nedostake koje sustav može imati. Te nedostatke opisat ćemo na primjeru sa slike \ref{fig: primjer ocjena}. U tom primjeru nalazi se 8  korinika koji su ocijenili 7 sadržaja
+Da bi bolje razumjelo i opravdalo uvođenje novih i izmjena starih metoda za davanje personaliziranih preporuka potrebno je proučiti moguće nedostake koje sustav može imati. Te nedostatke opisat ćemo na primjeru sa slike \ref{fig: primjer ocjena}. U tom primjeru nalazi se 8  korisnika koji su ocijenili 7 sadržaja.
+% odlomak
+\par 
+Najveći nedostatak je problem raspršenosti. Neki sadražji nisu ili su premalo ocjenjeni dok drugi  su ocjenjeni od većine korinisnika. Na slici \ref{fig: primjer ocjena} možemo vizualno vidjeti kako ocjene nisu dobro raspoređene u matrici. U ovi kategoriju nedostataka spada i problem premalo ocjena na početku rada sustava kad ocjena gotovo i nema i raspršenost je velika. Također problem nastaje kod novih korisnika ili sadržaja jer nemaju nikakve ocjene te je takvom korisniku onemogućeno davanje personaliziranih preporuka, a novi sadžaj se neće nikome preporučiti. Moguće je i da već postojeći korisnici nisu dodijelili ocjene ili su su samo oni dodijeli ocjene nekim sadržajima. Isto tako vrijedi i za postoje sadržaju za koje je moguće da nisu ocijenjeni. Za takve korisnike i sadžaje kažemo da su "crne ovce". Na slici \ref{fig: primjer ocjena} vidimo novog korisnika "Helena" i novi sadržaj "\#7" te crne ovce "Barbaru" i sadržaj "\#3".
+% odlomak
+\par 
+skalabilnost
+% odlomak
+\par 
+nefleksiilnost
+% odlomak
+\par 
+problem raznolikosti ili pretreniranja, izolacija preporuka (eng. filter bubble)
+% odlomak
+\par 
+problem manipulacije sustava
+\par 
+privatnosti
 
 % poglavlje
 \chapter{Sustavi temeljeni na suradnji}
 \label{ch: sustavi temeljeni na suradnji}
 % odlomak
 \par 
-Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. U takvim algoritmima kreiraju se modeli korisnika i pojedinih elemenata sadržaja. Dijelimo ih na one temeljene na sličnosti korisnika, sličnosti korisnika i one temeljene na modelu.
+Među najpopularnijim algoritmima koji se koriste su oni temeljeni na suradnji. Dijelimo ih na one temeljene na memoriji i one temeljene na modelu. Sustavi temeljeni na modelu koriste sve dostpune podatke bez predprociranja, dok oni temeljni ne modelu na temelju tih podataka prvo izrađuju model pa kasnije preporuke baziraju na tom modelu. U sustavima temeljenim na suradnji korisnici ocjenjuju sadržaje te se na tim ocjenama izrađuju preporuke. U sljedećim sekcijama definirani su osnovni pojmovi koji su nam potrebni za model takvih sustava, prikazani primjeri i implementacije u MatLab-u.
 % sekcija
 \section{Sustavi temeljeni na memoriji}
 \label{sec: sustavi temeljeni na memoriji}
-%
-Korisnici ocijenjuju objekte na web stranici te se na temelju tih ocjena stvara se model koji pokazuje koliko su slične preferencije korisnica i/ili koliko su slični objekti. Ocjena koju bi korisnik dao nekom objektu, kojeg još nije ocijenio, predviđa se na temelju k najsličnijih korisnika koje zovemo k-najbliži susjedi. Način predviđanja ocjena najčešće je određen sa sljedećom definicijom,
+% podsekcija
+\subsection{Sustavi temeljeni na sličnosti korisnika}
+% odlomak
+\par
+Ocjena koju bi korisnik dao nekom objektu, kojeg još nije ocijenio, predviđa se na temelju k najsličnijih korisnika koje zovemo k-najbliži susjedi. Način predviđanja ocjena najčešće je određen sa sljedećom definicijom.
+% definicija
 \begin{defn}
-Neka je $U$ skup korisnika (eng. users), $I$ skup objekata (eng. items), $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. Ako korisnik njie ocijenio neki objekt tada je vrijednost funkcije r jednaka nuli. $N_i \subseteq U$ je skup od k korinika koji su najsličniji korisniku $u$. Predviđanje koju ocjenu bi dao korisnik $u$ objektu $i$ dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti korisnika $s:U\times U\rightarrow \R$. 
+Neka je $U$ skup korisnika (eng. users), $I$ skup objekata (eng. items), $u\in U$ neki korisnik te $i\in I$ neki objekt. Korisnici ocijenjuju pojedni objekt što je dano funkcijom $r:U\times I \rightarrow \N$. Ako korisnik njie ocijenio neki objekt tada je vrijednost funkcije r jednaka nuli. $N_u \subseteq U$ je skup od k korisnika koji su najsličniji korisniku "$u$". Predviđanje koju ocjenu bi dao korisnik "$u$" objektu "$i$" dana je aritmetičkom sredinom s težinama pri čemu su težine zadane s funkcijom sličnosti korisnika $s:U\times U\rightarrow \R$. 
 \[ p:U\times I \rightarrow \R^+, p(u,i) = \overline{r_{u}}+\frac{\sum_{u'\in N_{u,i}}s(u,u')(r(u',i)-\overline{r_{u'}})}{\sum_{u'\in N_{u,i}}|s(u,u')|} \]
-Pri čemu je $N_{u,i} \subseteq N_i$ podskup od najbližih korisnika koji su ocijenili objekt i,a $\overline{r_{u'}}$ aritmetička sredina svih ocjena koje je dao korisnik u.
+Pri čemu je $N_{u,i} \subseteq N_i$ podskup od najbližih korisnika koji su ocijenili objekt i, a $\overline{r_{u}}$ aritmetička sredina svih ocjena koje je dao korisnik u.
 \[ \overline{r_{u}}=\frac{\sum_{i\in I}r(u,i)}{card\{i\in I | r(u,i) \neq 0 \} } \]
 \end{defn}
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{slike/user-based.png}
-\caption{Struktura sustava na temelju sličnsti korisnika}
-\end{center}
-\end{figure}
-\bigskip
-Za ovaj model moguće je na razne načine zadati funkciju sličnosti između korisnika.
+% odlomak
+\par
+Iz prethodne definicje vidimo da je za ovaj model moguće na razne načine zadati funkciju sličnosti između korisnika. Niže su navedeni primjeri funkcija sličnosti i kako se one računaju.
 \bigskip
 \\Primjeri funkcija sličnosti:
 \begin{itemize}[topsep=2pt]
@@ -257,9 +272,8 @@ U prilagođenoj kosinusovoj sličnosti uzima se u obzir i prosječna ocjena kori
 \[ s(u,v) = \frac{\sum_i (r(u,i)-\overline{r_u})(r(v,i)-\overline{r_v}) }{\sqrt{\sum_i (r(u,i)-\overline{r_u})^2}\:\sqrt{\sum_i (r(v,i)-\overline{r_v})^2}},  \] 
 pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\overline{r_v}$ je aritmetička sredina svih ocjena korisnika v.
 \end{defn}
-%
-\par
-Sustavi temeljeni na sličnosti objekata
+% podsekcija
+\subsection{Sustavi temeljeni na sličnosti sadržaja}
 \par 
 ovim sustavima se na temelju ocjena korisnika kreira model u kojem je se određuje sličmost između objekata. Za izračun k-najbliži susjeda u potrebno je $O(|U|)$ koraka, moguće i više, ovisno o načinu računanja funkcije sličnosti. U sustavima sa velikim brojem korisnika potreban je brži način predikcije ocjena. Skalabilnost dobivamo ako prethodno izračunamo susjede svakom objektu, smatra se da su sličnosti između ovjekata stabilniji od sličnosti korisnika, pa kod izračuna predikcija koristimo te unaprijed određene susjede. Objekti su sličniji ako imaju podjednake ocjene korisnika. Slično kao prethodnim sustavima, bira se k-najbližih susjeda nekog objekta i na temelju ocjena korisnika tim susjedima i funkcije sličnosti predviđa se ocjena.
 \begin{defn}
