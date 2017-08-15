@@ -58,7 +58,6 @@
 
 \begin{document}
 \renewcommand\thelstlisting{\arabic{chapter}.\arabic{lstlisting}.}
-\bibliography{ieetr}
 
 \frontmatter % generira stranicu za potpise povjerenstva, posvetu i sadržaj
 % uvod
@@ -272,6 +271,9 @@ U prilagođenoj kosinusovoj sličnosti uzima se u obzir i prosječna ocjena kori
 \[ s(u,v) = \frac{\sum_i (r(u,i)-\overline{r_u})(r(v,i)-\overline{r_v}) }{\sqrt{\sum_i (r(u,i)-\overline{r_u})^2}\:\sqrt{\sum_i (r(v,i)-\overline{r_v})^2}},  \] 
 pri čemu je $\overline{r_u}$ aritmetička sredina svih ocjena korisnika u i $\overline{r_v}$ je aritmetička sredina svih ocjena korisnika v.
 \end{defn}
+% odlomak
+\par
+a
 % podsekcija
 \subsection{Sustavi temeljeni na sličnosti sadržaja}
 \par 
@@ -444,7 +446,7 @@ end
 
 % Na kraju diplomkog rada stavlja se  bibliografija
 % Najprije definiramo nacin prikazivanja bibliografije, u ovom slucaju verzija amsplain stila
-\bibliographystyle{babamspl} % babamspl ili babplain
+\bibliographystyle{babplain} % babamspl ili babplain
 
 % U datoteku diplomski.bib se stavljaju bibliografske reference
 % Bibliografske reference u bib formatu se mogu dobiti iz MathSciNet baze, Google Scholara, ArXiva, ...
@@ -453,8 +455,6 @@ end
 \bibliography{bibliografija/diplomski}
 \nocite{*}
 \endgroup
-
-
 
 \pagestyle{empty} % ne zelimo brojanje sljedecih stranica
 
